@@ -1,0 +1,31 @@
+- name: Install packages
+  apt: name={{item}}
+  with_items:
+    - code
+    - google-chrome-stable
+    - flameshot
+    - deepin-screen-recorder
+    - jq
+    - htop
+    - zsh
+    - bat
+    - wget 
+    - git
+    - golang
+    - direnv
+    - yadm
+    - neovim
+    - kubectl
+    - tilix
+
+- name: Download and unarchive fonts
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+    dest: /usr/local/share/fonts
+    remote_src: yes
+
+- name: Download and unarchive fonts
+  unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip
+    dest: /usr/local/share/fonts
+    remote_src: yes

@@ -1,0 +1,3 @@
+- name: Install a lando from stable .deb package.
+  apt:
+    deb: https://files.devwithlando.io/lando-stable.deb

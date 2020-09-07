@@ -2,5 +2,8 @@
 *.vagrant
 .DS_Store
 *.retry
-roles*
-config.yml
+roles/*
+!roles*/hashicorp
+!roles/circleci
+!roles/gcloud
+!roles/lando

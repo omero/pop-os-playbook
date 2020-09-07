@@ -1,0 +1,23 @@
+- name: Install requirements for Cloud SDK
+  apt: name={{item}}
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - gnupg
+
+- name: Add an apt key Cloud SDK
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    keyring: /usr/share/keyrings/cloud.google.gpg
+    state: present
+
+- name: Add repository Cloud SDK
+  apt_repository:
+    repo: deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main
+    state: present
+
+- name: Install Cloud SDK
+  apt:
+    name: google-cloud-sdk
+    state: present
+    update_cache: true
