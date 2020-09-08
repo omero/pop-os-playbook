@@ -17,6 +17,8 @@
     - neovim
     - kubectl
     - tilix
+    - ssh
+    - filezilla
 
 - name: Download and unarchive fonts
   unarchive:
