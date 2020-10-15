@@ -1,0 +1,12 @@
+- name: Add repository yubico
+  apt_repository:
+    repo: ppa:yubico/stable
+
+- name: Install packages required for yubikey
+  apt: name={{item}}
+  with_items:
+    - gnupg
+    - yubikey-manager
+    - scdaemon
+    - pcscd
+    - pinentry-tty

@@ -6,6 +6,9 @@
     - default.config.yml
 
   tasks:
+    - include_tasks: tasks/gcloud.yml
+      tags: ['setup']
+    
     - include_tasks: tasks/setup.yml
       tags: ['setup']
 
@@ -15,8 +18,7 @@
     - include_tasks: tasks/circleci-cli.yml
       tags: ['setup']
 
-    - include_tasks: tasks/gcloud.yml
-      tags: ['setup']
+
 
     - include_tasks: tasks/lando.yml
       tags: ['setup']
@@ -25,6 +27,9 @@
       tags: ['flatpak']  
 
     - include_tasks: tasks/sudoers.yml
+      tags: ['setup']
+    
+    - include_tasks: tasks/yubikey.yml
       tags: ['setup']  
   
 
