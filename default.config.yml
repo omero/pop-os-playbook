@@ -1,5 +1,6 @@
 ansible_os_family: Debian
 ansible_distribution: ubuntu
+ansible_distribution_release: focal
 php_enable_webserver: false
 __php_default_version_debian: "7.4"
 php_version: '7.4'
