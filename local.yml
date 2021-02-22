@@ -15,6 +15,9 @@
     - include_tasks: tasks/terraform.yml
       tags: ['setup']
 
+    - include_tasks: tasks/insomnia.yml
+      tags: ['setup']
+
     - include_tasks: tasks/circleci-cli.yml
       tags: ['setup']
 

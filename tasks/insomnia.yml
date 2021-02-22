@@ -1,0 +1,16 @@
+- name: Add an apt key insomnia
+  apt_key:
+    url: "https://insomnia.rest/keys/debian-public.key.asc"
+    state: present
+
+- name: Add repository Terraform
+  apt_repository:
+    repo: deb https://dl.bintray.com/getinsomnia/Insomnia /
+    state: present
+    filename: 'insomnia.list'
+
+- name: Install insomnia
+  apt:
+    name: insomnia
+    state: present
+    update_cache: true

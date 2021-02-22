@@ -22,7 +22,7 @@
     - gnome-shell-pomodoro
     - kazam
     - openshot
-    - yarnpkg    
+    # - yarnpkg    
 
 - name: Download and unarchive fonts
   unarchive:
