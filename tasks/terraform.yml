@@ -10,6 +10,6 @@
 
 - name: Install terraform
   apt:
-    name: terraform
+    pkg: terraform
     state: present
     update_cache: true

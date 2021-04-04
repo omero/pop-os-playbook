@@ -1,0 +1,29 @@
+
+- name: Get assets
+  get_url:
+    url: "https://api.github.com/repos/pantheon-systems/pants/releases/latest?access_token={{ github_token }}"
+    force: yes
+    headers:
+      Accept: "application/vnd.github.v3+json"
+    dest: "/tmp/pants.json"
+
+- name: Get download url
+  shell: |
+    cat "/tmp/pants.json" | jq '.assets | .[] | select(.browser_download_url | contains("_linux_amd64.deb")) | .url' | sed -e 's/^"//' -e 's/"$//'
+  register: "download_url"
+
+- debug:
+    msg: "{{ download_url.stdout }}"
+
+- name: Download latest release
+  get_url:
+    url: "{{ download_url.stdout }}?access_token={{ github_token }}"
+    dest: /tmp/pants.deb
+    tmp_dest: /tmp/
+    force: yes
+    headers:
+      Accept: "application/octet-stream"
+
+- name: Install a .deb package
+  apt:
+    deb: /tmp/pants.deb

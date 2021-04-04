@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  vars_files:
+    - default.config.yml
+
+  pre_tasks:
+    - name: Include playbook configuration.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ['always']
+
+  roles:
+      - role: geerlingguy.docker
+        tags: ['docker']
+        docker_compose_version: "1.28.2"
+        docker_install_compose: true
+        docker_users:
+        - omers
+
+      - role: geerlingguy.php
+        tags: ['php']
+        php_enable_webserver: false
+        php_default_version_debian: "7.4"
+
+      - role: geerlingguy.php-versions
+        tags: ['php']
+        php_version: '7.4'
+
+      - role: geerlingguy.composer
+        tags: ['php']
+
+      - role: stephdewit.nvm
+        tags: ['node']
+        become: yes
+        become_user: omers
+        environment:
+          NVM_DIR: /home/omers/.nvm
+        
+      - role: hurricanehrndz.rustup
+        tags: ['rust']
+        rustup_user: omers
+        
+
+  tasks:
+
+    - include_tasks: tasks/setup.yml
+      tags: ['setup']
+
+    - include_tasks: tasks/gcloud.yml
+      tags: ['setup']
+    
+    - include_tasks: tasks/terraform.yml
+      tags: ['setup']
+    
+    - include_tasks: tasks/sudoers.yml
+      tags: ['setup']
+    
+    - include_tasks: tasks/yubikey.yml
+      tags: ['setup']  
+
+    - include_tasks: tasks/kube.yml
+      tags: ['setup']
+    
+    - include_tasks: tasks/pants.yml
+      tags: ['setup']
+  
+        

@@ -1,9 +1,6 @@
- 
+config.yml 
 *.vagrant
 .DS_Store
 *.retry
 roles/*
-!roles*/hashicorp
-!roles/circleci
-!roles/gcloud
-!roles/lando
+collections/*

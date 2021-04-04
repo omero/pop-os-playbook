@@ -1,28 +1,13 @@
-- name: Install packages
-  apt: name={{item}}
-  with_items:
-    - code
-    - google-chrome-stable
-    - flameshot
-    - deepin-screen-recorder
-    - jq
-    - htop
-    - zsh
-    - bat
-    - wget 
-    - git
-    - golang
-    - direnv
-    - yadm
-    - neovim
-    - kubectl
-    - tilix
-    - ssh
-    - filezilla
-    - gnome-shell-pomodoro
-    - kazam
-    - openshot
-    # - yarnpkg    
+- name: Installing os packages
+  apt:
+    pkg: "{{apt_installed_packages}}"
+    state: present
+
+- name: Installing flatpak packages
+  community.general.flatpak:
+    name: "{{item}}"
+    state: present
+  with_items: "{{flatpack_installed_packages}}"
 
 - name: Download and unarchive fonts
   unarchive:
@@ -35,3 +20,12 @@
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip
     dest: /usr/local/share/fonts
     remote_src: yes
+
+- name: Installing CircleCI cli
+  shell: curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | bash
+  args:
+    warn: no
+
+- name: Installing Lando
+  apt:
+    deb: https://files.devwithlando.io/lando-stable.deb

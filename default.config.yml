@@ -1,9 +1,43 @@
+# We need to override distribution ansible variables 
+# to make it work with PopOS
 ansible_os_family: Debian
 ansible_distribution: ubuntu
 ansible_distribution_release: focal
-php_enable_webserver: false
-__php_default_version_debian: "7.4"
-php_version: '7.4'
-docker_install_compose: true
-docker_users:
-- omers
+
+apt_installed_packages:
+  - code
+  - google-chrome-stable
+  - flameshot
+  - deepin-screen-recorder
+  - jq
+  - htop
+  - zsh
+  - bat
+  - wget 
+  - git
+  - golang
+  - direnv
+  - yadm
+  - neovim
+  - kubectl
+  - ssh
+  - filezilla
+  - kazam
+  - openshot
+  - vlc
+  - virtualbox
+  - vagrant
+  - qemu 
+  - qemu-kvm 
+  - libvirt-daemon 
+  - libvirt-clients 
+  - bridge-utils 
+  - virt-manager
+
+flatpack_installed_packages:
+  - https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
+  - https://dl.flathub.org/repo/appstream/us.zoom.Zoom.flatpakref
+  - https://dl.flathub.org/repo/appstream/com.discordapp.Discord.flatpakref
+  - https://dl.flathub.org/repo/appstream/org.gnome.meld.flatpakref
+  - https://dl.flathub.org/repo/appstream/com.slack.Slack.flatpakref
+  - https://dl.flathub.org/repo/appstream/com.getpostman.Postman.flatpakref

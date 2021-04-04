@@ -1,5 +1,10 @@
-- name: stephdewit.nvm
-- name: geerlingguy.docker
-- name: geerlingguy.php-versions
-- name: geerlingguy.php
-- name: geerlingguy.composer
+collections:
+  - name: community.general
+roles:
+  
+  - name: geerlingguy.docker
+  - name: geerlingguy.php-versions
+  - name: geerlingguy.php
+  - name: geerlingguy.composer
+  - name: stephdewit.nvm
+  - name: hurricanehrndz.rustup
