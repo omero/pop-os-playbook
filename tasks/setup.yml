@@ -4,7 +4,7 @@
     state: present
 
 - name: Installing flatpak packages
-  community.general.flatpak:
+  flatpak:
     name: "{{item}}"
     state: present
   with_items: "{{flatpack_installed_packages}}"

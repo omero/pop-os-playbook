@@ -23,7 +23,7 @@
       - role: geerlingguy.php
         tags: ['php']
         php_enable_webserver: false
-        php_default_version_debian: "7.4"
+        __php_default_version_debian: "7.4"
 
       - role: geerlingguy.php-versions
         tags: ['php']
