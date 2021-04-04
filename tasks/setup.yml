@@ -21,6 +21,11 @@
     dest: /usr/local/share/fonts
     remote_src: yes
 
+- name: Installing starship prompt
+  shell: curl -fsSL https://starship.rs/install.sh | bash -s -- -y
+  args:
+    warn: no
+
 - name: Installing CircleCI cli
   shell: curl -fLSs https://raw.githubusercontent.com/CircleCI-Public/circleci-cli/master/install.sh | bash
   args:
