@@ -25,6 +25,7 @@ apt_installed_packages:
   - kazam
   - openshot
   - vlc
+  - obs-studio
   - virtualbox
   - vagrant
   - qemu 
