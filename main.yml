@@ -42,29 +42,37 @@
       - role: hurricanehrndz.rustup
         tags: ['rust']
         rustup_user: omers
-        
+
+      - role: gantsign.visual-studio-code
+        tags: ['visual-code']
+        users:
+        - username: omers
+
 
   tasks:
+
+    - include_tasks: tasks/repositories.yml
+      tags: ['setup']
 
     - include_tasks: tasks/setup.yml
       tags: ['setup']
 
-    - include_tasks: tasks/gcloud.yml
-      tags: ['setup']
+    #- include_tasks: tasks/gcloud.yml
+      #tags: ['setup']
     
-    - include_tasks: tasks/terraform.yml
-      tags: ['setup']
+    #- include_tasks: tasks/terraform.yml
+      #tags: ['setup']
     
-    - include_tasks: tasks/sudoers.yml
-      tags: ['setup']
+    #- include_tasks: tasks/sudoers.yml
+      #tags: ['setup']
     
-    - include_tasks: tasks/yubikey.yml
-      tags: ['setup']  
+    #- include_tasks: tasks/yubikey.yml
+      #tags: ['setup']
 
-    - include_tasks: tasks/kube.yml
-      tags: ['setup']
+    #- include_tasks: tasks/kube.yml
+      #tags: ['setup']
     
-    - include_tasks: tasks/pants.yml
-      tags: ['setup']
+    #- include_tasks: tasks/pants.yml
+      #tags: ['setup']
   
         

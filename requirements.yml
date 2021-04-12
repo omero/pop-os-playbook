@@ -8,3 +8,4 @@ roles:
   - name: geerlingguy.composer
   - name: stephdewit.nvm
   - name: hurricanehrndz.rustup
+  - name: gantsign.visual-studio-code

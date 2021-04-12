@@ -1,11 +1,3 @@
-- name: Install requirements for Cloud SDK
-  apt:
-    pkg:
-      - apt-transport-https
-      - ca-certificates
-      - gnupg
-    state: present    
-
 - name: Add an apt key Cloud SDK
   apt_key:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
