@@ -1,13 +1,16 @@
-- name: Add repository yubico
-  apt_repository:
-    repo: ppa:yubico/stable
-
 - name: Install packages required for yubikey
-  apt:
-    pkg: 
-      - gnupg
+  dnf:
+    pkg:
+      - gnupg2
       - yubikey-manager
-      - scdaemon
-      - pcscd
+      - pcsc-lite 
       - pinentry-tty
-    state: present
+    state: latest
+
+# Fix the need to reboot pcscd each time we login (use it if you used your yubi just for gpg)
+# https://bugzilla.redhat.com/show_bug.cgi?id=1893131
+- name: Uninstall opensc for yubikey
+  dnf:
+    pkg:
+      - opensc
+    state: absent

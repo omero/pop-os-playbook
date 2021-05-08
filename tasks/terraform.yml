@@ -1,15 +1,13 @@
-- name: Add an apt key terraform
-  apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
-    state: present
+- name: Set repo for hashicorp (via command)
+  command:
+    cmd: dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
+    warn: false
+  args:
+    creates: /etc/yum.repos.d/hashicorp.repo
 
-- name: Add repository Terraform
-  apt_repository:
-    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
-    state: present
-
-- name: Install terraform
-  apt:
-    pkg: terraform
-    state: present
-    update_cache: true
+- name: install a modularity appstream with defined profile
+  dnf:
+    name: 
+      - terraform
+      - vagrant
+    state: latest

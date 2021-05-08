@@ -2,6 +2,7 @@ collections:
   - name: community.general
 roles:
   
+  - name: geerlingguy.repo-remi
   - name: geerlingguy.docker
   - name: geerlingguy.php-versions
   - name: geerlingguy.php

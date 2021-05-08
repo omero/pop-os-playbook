@@ -1,7 +1,25 @@
+---
+- name: Set microsoft repo for vs code
+  yum_repository:
+    name: code
+    description: vscode
+    file: vscode
+    gpgkey: https://packages.microsoft.com/keys/microsoft.asc
+    baseurl: https://packages.microsoft.com/yumrepos/vscode
+
+- name: Set repo for yadm (via command)
+  command:
+    # cmd: dnf config-manager --add-repo https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/Fedora_Rawhide/home:TheLocehiliosan:yadm.repo
+    cmd: dnf config-manager --add-repo https://download.opensuse.org/repositories/home:TheLocehiliosan:yadm/Fedora_33/home:TheLocehiliosan:yadm.repo
+    warn: false
+  args:
+    creates: /etc/yum.repos.d/yadm.repo
+
 - name: Installing os packages
-  apt:
-    pkg: "{{apt_installed_packages}}"
-    state: present
+  dnf:
+    pkg: "{{os_installed_packages}}"
+    state: latest
+
 
 - name: Installing flatpak packages
   flatpak:
@@ -9,16 +27,21 @@
     state: present
   with_items: "{{flatpack_installed_packages}}"
 
+- name: Ensure that font directory exist
+  file:
+    path: /usr/share/fonts
+    state: directory
+
 - name: Download and unarchive fonts
   unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
-    dest: /usr/local/share/fonts
+    dest: /usr/share/fonts
     remote_src: yes
 
 - name: Download and unarchive fonts
   unarchive:
     src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraMono.zip
-    dest: /usr/local/share/fonts
+    dest: /usr/share/fonts
     remote_src: yes
 
 - name: Installing starship prompt
@@ -32,5 +55,7 @@
     warn: no
 
 - name: Installing Lando
-  apt:
-    deb: https://files.devwithlando.io/lando-stable.deb
+  dnf:
+    name: https://files.devwithlando.io/lando-stable.rpm
+    state: present
+    disable_gpg_check: true

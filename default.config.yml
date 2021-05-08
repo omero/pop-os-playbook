@@ -1,14 +1,11 @@
 # We need to override distribution ansible variables 
 # to make it work with PopOS
-ansible_os_family: Debian
-ansible_distribution: ubuntu
-ansible_distribution_release: focal
 
-apt_installed_packages:
+remi_repo_url: "https://rpms.remirepo.net/enterprise/remi-release-8.rpm"
+os_installed_packages:
   - code
   - google-chrome-stable
   - flameshot
-  - deepin-screen-recorder
   - jq
   - htop
   - zsh
@@ -19,26 +16,20 @@ apt_installed_packages:
   - direnv
   - yadm
   - neovim
-  - kubectl
-  - ssh
   - filezilla
-  - kazam
-  - openshot
-  - vlc
-  - obs-studio
-  - virtualbox
-  - vagrant
-  - qemu 
-  - qemu-kvm 
-  - libvirt-daemon 
-  - libvirt-clients 
-  - bridge-utils 
-  - virt-manager
+  # gnome
+  - gnome-tweaks 
 
 flatpack_installed_packages:
   - https://dl.flathub.org/repo/appstream/com.spotify.Client.flatpakref
   - https://dl.flathub.org/repo/appstream/us.zoom.Zoom.flatpakref
   - https://dl.flathub.org/repo/appstream/com.discordapp.Discord.flatpakref
-  - https://dl.flathub.org/repo/appstream/org.gnome.meld.flatpakref
   - https://dl.flathub.org/repo/appstream/com.slack.Slack.flatpakref
   - https://dl.flathub.org/repo/appstream/com.getpostman.Postman.flatpakref
+  - https://dl.flathub.org/repo/appstream/com.bitwarden.desktop.flatpakref
+  - https://dl.flathub.org/repo/appstream/com.obsproject.Studio.flatpakref
+  - https://dl.flathub.org/repo/appstream/org.videolan.VLC.flatpakref
+  - https://dl.flathub.org/repo/appstream/io.dbeaver.DBeaverCommunity.flatpakref
+  - https://dl.flathub.org/repo/appstream/org.gnome.meld.flatpakref
+  # gnome
+  - https://dl.flathub.org/repo/appstream/org.gnome.Extensions.flatpakref

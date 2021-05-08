@@ -9,7 +9,7 @@
 
 - name: Get download url
   shell: |
-    cat "/tmp/pants.json" | jq '.assets | .[] | select(.browser_download_url | contains("_linux_amd64.deb")) | .url' | sed -e 's/^"//' -e 's/"$//'
+    cat "/tmp/pants.json" | jq '.assets | .[] | select(.browser_download_url | contains("x86_64.rpm")) | .url' | sed -e 's/^"//' -e 's/"$//'
   register: "download_url"
 
 - debug:
@@ -18,12 +18,14 @@
 - name: Download latest release
   get_url:
     url: "{{ download_url.stdout }}?access_token={{ github_token }}"
-    dest: /tmp/pants.deb
+    dest: /tmp/pants.rpm
     tmp_dest: /tmp/
     force: yes
     headers:
       Accept: "application/octet-stream"
 
-- name: Install a .deb package
-  apt:
-    deb: /tmp/pants.deb
+- name: Install a .rpm package
+  yum:
+    name: /tmp/pants.rpm
+    state: present
+    disable_gpg_check: yes
