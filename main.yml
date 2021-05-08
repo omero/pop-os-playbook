@@ -13,29 +13,29 @@
       tags: ['always']
 
   roles:
-    # - role: geerlingguy.docker
-    #   tags: ['docker']
-    #   docker_compose_version: "1.28.2"
-    #   docker_install_compose: true
-    #   docker_users:
-    #   - omers
+    - role: geerlingguy.docker
+      tags: ['docker']
+      docker_compose_version: "1.28.2"
+      docker_install_compose: true
+      docker_users:
+      - omers
 
-    # - role: geerlingguy.php
-    #   tags: ['php']
+    - role: geerlingguy.php
+      tags: ['php']
 
-    # - role: geerlingguy.composer
-    #   tags: ['php']
+    - role: geerlingguy.composer
+      tags: ['php']
 
-    # - role: stephdewit.nvm
-    #   tags: ['node']
-    #   become: yes
-    #   become_user: omers
-    #   environment:
-    #     NVM_DIR: /home/omers/.nvm
+    - role: stephdewit.nvm
+      tags: ['node']
+      become: yes
+      become_user: omers
+      environment:
+        NVM_DIR: /home/omers/.nvm
       
-    # - role: hurricanehrndz.rustup
-    #   tags: ['rust']
-    #   rustup_user: omers
+    - role: hurricanehrndz.rustup
+      tags: ['rust']
+      rustup_user: omers
         
   tasks:
 
